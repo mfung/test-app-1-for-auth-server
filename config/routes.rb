@@ -7,4 +7,6 @@ OauthClientDemo::Application.routes.draw do
 
   # Custom logout
   match '/logout', :to => 'user_sessions#destroy'
+  
+  match 'api/roles', :to => 'home#roles'
 end

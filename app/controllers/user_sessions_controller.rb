@@ -12,7 +12,22 @@ class UserSessionsController < ApplicationController
       # New user registration
       user = User.create!(:uid => omniauth['uid'], 
                           :first_name => omniauth['extra']['first_name'],
-                          :last_name => omniauth['extra']['last_name'])
+                          :last_name => omniauth['extra']['last_name'],
+                          :status => omniauth['extra']['status'],
+                          :department => omniauth['extra']['department'],
+                          :role => omniauth['extra']['role'],
+                          :data_hash => omniauth['extra']['data_hash'],
+                          :email => omniauth['user_info']['name'])
+                          
+    elsif user.data_hash != omniauth['extra']['data_hash']
+      user = user.update_attributes(:first_name => omniauth['extra']['first_name'],
+                          :last_name => omniauth['extra']['last_name'],
+                          :status => omniauth['extra']['status'],
+                          :department => omniauth['extra']['department'],
+                          :role => omniauth['extra']['role'],
+                          :data_hash => omniauth['extra']['data_hash'],
+                          :email => omniauth['user_info']['name'])
+      
     end
 
     # Currently storing all the info

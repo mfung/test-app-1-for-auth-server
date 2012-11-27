@@ -6,5 +6,6 @@
  <%= link_to 'login', '/auth/josh_id' %>
 <% else %> 
   <h1>Hello <%= "#{@current_user.first_name} #{@current_user.last_name}" %> !</h1>
+  <p><%= "#{@current_user.id}"%></p>
  <%= link_to 'logout', '/logout' %>
 <% end %>
